@@ -42,22 +42,23 @@ binding.pry
           find_opposite(their_move)
         end
       else
-        near_lines = find_near_lines
-        if near_lines[:mine].size > 0
-          near_lines[:mine].sample.detect { |space| @board.position(space) \
-            == " "}
-        elsif near_lines[:theirs].size > 0
-          near_lines[:theirs].sample.detect { |space| @board.position(space) \
-            == " "}
-        else
-          trap_spots = find_trap_spots
-          if trap_spots[:mine].size > 0
-            trap_spots[:mine].sample
-          elsif trap_spots[:theirs].size > 0
-            trap_spots[:theirs].sample
-          else
-            Array(1..9).map { |space| @board.valid_move?(space) }.sample
-          end
+        play_o
+        # near_lines = find_near_lines
+        # if near_lines[:mine].size > 0
+        #   near_lines[:mine].sample.detect { |space| @board.position(space) \
+        #     == " "}
+        # elsif near_lines[:theirs].size > 0
+        #   near_lines[:theirs].sample.detect { |space| @board.position(space) \
+        #     == " "}
+        # else
+        #   trap_spots = find_trap_spots
+        #   if trap_spots[:mine].size > 0
+        #     trap_spots[:mine].sample
+        #   elsif trap_spots[:theirs].size > 0
+        #     trap_spots[:theirs].sample
+        #   else
+        #     Array(1..9).map { |space| @board.valid_move?(space) }.sample
+        #   end
         end
       end
     end
