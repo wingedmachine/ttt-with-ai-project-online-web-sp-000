@@ -30,9 +30,7 @@ module Players
         my_last_move = @board.cells.find_index("X") + 1
         their_move = @board.cells.find_index("O") + 1
 
-binding.pry
-
-        if their_move = CENTER
+        if their_move == CENTER
           find_opposite(my_last_move)
         elsif EDGES.include?(their_move)
           CENTER
@@ -42,24 +40,23 @@ binding.pry
           find_opposite(their_move)
         end
       else
-        play_o
-        # near_lines = find_near_lines
-        # if near_lines[:mine].size > 0
-        #   near_lines[:mine].sample.detect { |space| @board.position(space) \
-        #     == " "}
-        # elsif near_lines[:theirs].size > 0
-        #   near_lines[:theirs].sample.detect { |space| @board.position(space) \
-        #     == " "}
-        # else
-        #   trap_spots = find_trap_spots
-        #   if trap_spots[:mine].size > 0
-        #     trap_spots[:mine].sample
-        #   elsif trap_spots[:theirs].size > 0
-        #     trap_spots[:theirs].sample
-        #   else
-        #     Array(1..9).map { |space| @board.valid_move?(space) }.sample
-        #   end
-        # end
+        near_lines = find_near_lines
+        if near_lines[:mine].size > 0
+          near_lines[:mine].sample.detect { |space| @board.position(space) \
+            == " "}
+        elsif near_lines[:theirs].size > 0
+          near_lines[:theirs].sample.detect { |space| @board.position(space) \
+            == " "}
+        else
+          trap_spots = find_trap_spots
+          if trap_spots[:mine].size > 0
+            trap_spots[:mine].sample
+          elsif trap_spots[:theirs].size > 0
+            trap_spots[:theirs].sample
+          else
+            Array(1..9).map { |space| @board.valid_move?(space) }.sample
+          end
+        end
       end
     end
 
