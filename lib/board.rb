@@ -16,7 +16,7 @@ class Board
       board << " #{cell} "
       case i % 3
       when 0, 1 then board << "|"
-      when 2 then board << "\n#{hori}\n"
+      when 2 then board << "\n#{hori}\n" unless i == 8
       end
     end
     puts board

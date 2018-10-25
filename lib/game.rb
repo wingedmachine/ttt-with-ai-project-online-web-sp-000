@@ -20,6 +20,48 @@ class Game
     @board = board
   end
 
+  def self.start
+    puts "It is the 90s, and it is time for tic tac toe."
+    case determine_player_count
+    when 0 then Game.new(Players::Computer.new("X"),
+                         Players::Computer.new("O")
+                        ).play
+    when 1 then start_one_player_game
+    when 2 then Game.new.play
+    end
+  end
+
+  def self.determine_player_count
+    input = nil
+    loop do
+      puts "How many players? 1, 2, or 0?"
+      input = gets.strip
+      break if input.match(/[012]/)
+    end
+    input.to_i
+  end
+
+  def self.start_one_player_game
+    case determine_which_player_is_human
+    when 1 then Game.new(Players::Human.new("X"),
+                         Players::Computer.new("O")
+                        ).play
+    when 2 then Game.new(Players::Computer.new("X"),
+                         Players::Human.new("O")
+                        ).play
+    end
+  end
+
+  def self.determine_which_player_is_human
+    input = nil
+    loop do
+      puts "Would you like to be player 1 or 2?"
+      input = gets.strip
+      break if input.match(/[12]/)
+    end
+    input.to_i
+  end
+
   def current_player
     @board.turn_count.even? ? @player_1 : @player_2
   end
@@ -56,10 +98,23 @@ class Game
 
   def play
     until over?
-      @board.display
-      puts "Where would you like to move?"
+      puts "\nWhere would you like to move?"
       turn
+      @board.display
     end
     puts winner ? "Congratulations #{winner}!" : "Cat's Game!"
+    offer_new_game
+  end
+
+  def offer_new_game
+    input = nil
+    loop do
+      puts "Would you like to play again? (y/n)"
+      input = gets.strip.downcase
+      break if input.match(/[yn]/)
+    end
+    if input == "y"
+      Game.start
+    end
   end
 end
