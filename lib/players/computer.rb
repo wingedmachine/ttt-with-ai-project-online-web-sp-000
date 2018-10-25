@@ -30,6 +30,8 @@ module Players
         my_last_move = @board.cells.find_index("X") + 1
         their_move = @board.cells.find_index("O") + 1
 
+binding.pry
+
         if their_move = CENTER
           find_opposite(my_last_move)
         elsif EDGES.include?(their_move)
