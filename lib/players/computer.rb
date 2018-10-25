@@ -59,7 +59,7 @@ binding.pry
         #   else
         #     Array(1..9).map { |space| @board.valid_move?(space) }.sample
         #   end
-        end
+        # end
       end
     end
 
