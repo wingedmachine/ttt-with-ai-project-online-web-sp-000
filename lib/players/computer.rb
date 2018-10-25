@@ -1,9 +1,9 @@
 module Players
   class Computer < Player
-    # There are many places this class would benefit from refactoring, 
+    # There are many places this class would benefit from refactoring,
     # but there are limited benefits to me spending more time on this
     # assignment when I could be completing future ones.
-    
+
     CENTER = 5
     CORNERS = [1,3,7,9]
     EDGES = [2,4,6,8]
@@ -55,6 +55,7 @@ module Players
             trap_spots[:theirs].sample
           else
             Array(1..9).map { |space| @board.valid_move?(space) }.sample
+          end
         end
       end
     end
@@ -87,7 +88,7 @@ module Players
         end
       end
       near_lines
-      end
+    end
 
     def find_trap_spots
       their_token = get_their_token
@@ -102,7 +103,7 @@ module Players
           near_empty_lines[:theirs] << line
         end
       end
-      trap_spots = { 
+      trap_spots = {
         mine: compare_near_empty_lines(near_empty_lines[:mine]),
         theirs: compare_near_empty_lines(near_empty_lines[:theirs])
       }
